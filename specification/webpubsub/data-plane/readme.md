@@ -4,10 +4,10 @@
 
 This is the AutoRest configuration file for Web PubSub Service.
 
-
-
 ---
+
 ## Getting Started
+
 To build the SDK for Web PubSub Service, simply [Install AutoRest](https://aka.ms/autorest/install) and in this folder, run:
 
 > `autorest`
@@ -15,18 +15,18 @@ To build the SDK for Web PubSub Service, simply [Install AutoRest](https://aka.m
 To see additional help and options, run:
 
 > `autorest --help`
+
 ---
 
 ## Configuration
 
-
-
 ### Basic Information
+
 These are the global settings for the Web PubSub Service API.
 
 ``` yaml
 openapi-type: data-plane
-tag: package-2021-05-01-preview
+tag: package-2024-01
 ```
 
 ### Suppression
@@ -39,18 +39,65 @@ directive:
     reason: There are a lot of APIs that does not have the example. While it is being worked upon disabling this to ensure that we catch and fix other violations
 ```
 
+
+### Tag: package-2024-01
+
+These settings apply only when `--tag=package-2024-01` is specified on the command line.
+
+```yaml $(tag) == 'package-2024-01'
+input-file:
+  - WebPubSub/stable/2024-01-01/webpubsub.json
+```
+### Tag: package-2023-07-01
+
+These settings apply only when `--tag=package-2023-07-01` is specified on the command line.
+
+``` yaml $(tag) == 'package-2023-07-01'
+input-file:
+  - WebPubSub/stable/2023-07-01/webpubsub.json
+```
+
+### Tag: package-2022-11-01
+
+These settings apply only when `--tag=package-2022-11-01` is specified on the command line.
+
+``` yaml $(tag) == 'package-2022-11-01'
+input-file:
+  - WebPubSub/stable/2022-11-01/webpubsub.json
+title: AzureMessagingWebPubSubServiceClient
+```
+
+### Tag: package-2021-10-01
+
+These settings apply only when `--tag=package-2021-10-01` is specified on the command line.
+
+``` yaml $(tag) == 'package-2021-10-01'
+input-file:
+  - WebPubSub/stable/2021-10-01/webpubsub.json
+title: AzureMessagingWebPubSubServiceClient
+```
+
+### Tag: package-2021-08-01-preview
+
+These settings apply only when `--tag=package-2021-08-01-preview` is specified on the command line.
+
+``` yaml $(tag) == 'package-2021-08-01-preview'
+input-file:
+  - WebPubSub/preview/2021-08-01-preview/webpubsub.json
+title: AzureMessagingWebPubSubServiceClient
+```
+
 ### Tag: package-2021-05-01-preview
 
 These settings apply only when `--tag=package-2021-05-01-preview` is specified on the command line.
 
 ``` yaml $(tag) == 'package-2021-05-01-preview'
 input-file:
-- WebPubSub/preview/2021-05-01-preview/webpubsub.json
+  - WebPubSub/preview/2021-05-01-preview/webpubsub.json
 title: AzureMessagingWebPubSubServiceClient
 ```
 
 # Code Generation
-
 
 ## Swagger to SDK
 
@@ -59,10 +106,7 @@ This is not used by Autorest itself.
 
 ``` yaml $(swagger-to-sdk)
 swagger-to-sdk:
-  - repo: azure-sdk-for-python
-  - repo: azure-sdk-for-net
-  - repo: azure-sdk-for-java
-  - repo: azure-sdk-for-js
+  - repo: azure-sdk-for-net-track2
 ```
 
 ## C#
@@ -80,37 +124,6 @@ csharp:
   clear-output-folder: true
 ```
 
-## Java
-
-These settings apply only when `--java` is specified on the command line.
-Please also specify `--azure-libraries-for-java-folder=<path to the root directory of your azure-libraries-for-java clone>`.
-
-``` yaml $(java)
-azure-arm: false
-fluent: true
-namespace: com.azure.messaging.webpubsub
-license-header: MICROSOFT_MIT_NO_CODEGEN
-payload-flattening-threshold: 1
-output-folder: $(azure-libraries-for-java-folder)/webpubsub/data-plane
-```
-
-## TypeScript
-
-These settings apply only when `--typescript` is specified on the command line.
-Please also specify `--typescript-sdks-folder=<path to root folder of your azure-sdk-for-js clone>`.
-
-``` yaml $(typescript)
-azure-arm: false
-package-name: "@azure/web-pubsub"
-license-header: MICROSOFT_MIT_NO_VERSION
-output-folder: "$(typescript-sdks-folder)/sdk/web-pubsub/web-pubsub"
-clear-output-folder: true
-generate-metadata: true
-v3: true
-use-extension:
-  "@autorest/typescript": "6.0.0-dev.20201105.2"
-```
-
 ## Python
 
 These settings apply only when `--python` is specified on the command line.
@@ -126,15 +139,16 @@ package-name: azure-messaging-webpubsubservice
 package-version: 1.0.0b1
 clear-output-folder: true
 ```
+
 ``` yaml $(python) && $(python-mode) == 'update'
 no-namespace-folders: true
 output-folder: $(python-sdks-folder)/webpubsub/azure-messaging-webpubsubservice/azure/messaging/webpubsubservice
 ```
+
 ``` yaml $(python) && $(python-mode) == 'create'
 basic-setup-py: true
 output-folder: $(python-sdks-folder)/webpubsub/azure-messaging-webpubsubservice
 ```
-
 
 ## Multi-API/Profile support for AutoRest v3 generators
 
@@ -149,11 +163,10 @@ require: $(this-folder)/../../../profiles/readme.md
 # all the input files across all versions
 input-file:
   - $(this-folder)/WebPubSub/preview/2021-05-01-preview/webpubsub.json
-
 ```
 
 If there are files that should not be in the `all-api-versions` set,
-uncomment the  `exclude-file` section below and add the file paths.
+uncomment the `exclude-file` section below and add the file paths.
 
 ``` yaml $(tag) == 'all-api-versions'
 #exclude-file:
